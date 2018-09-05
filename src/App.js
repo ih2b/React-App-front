@@ -23,10 +23,12 @@ class App extends Component {
   }
 
   onInputChange = (event) => {
-    this.setState({input:event.target.value});
- 
+    this.setState({input: event.target.value});
+    console.log(event.target.value);
   }
   onSubmit =(event) =>{
+    
+    this.setState({imageUrl: this.state.input});
    
     app.models.predict ( Clarifai.COLOR_MODEL , "https://samples.clarifai.com/face-det.jpg").then(
     function(response) {
@@ -50,7 +52,9 @@ class App extends Component {
            imageUrl={this.imageUrl}
             />
            <BgAnim />
-           <Facerecong imageUrl={this.imageUrl}/>
+           <Facerecong 
+           imageUrl={this.state.imageUrl}
+           />
            
            
       </div>
